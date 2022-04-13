@@ -53,6 +53,11 @@ def get_marks(message):
         i: int = 0
         for value in d.values():
             bot.send_message(message.chat.id, f'{journal_info[i]}:  {value}')
+            if journal_info[i] == 'Экзамен':
+                rating = d[SubjectBoxKeys.RATING]
+                exam = d[SubjectBoxKeys.EXAM]
+                final_mark = round((0.6 * float(rating) + 0.4 * float(exam)), 2)
+                bot.send_message(message.chat.id, f'Итоговая: {str(final_mark)}')
             i += 1
         bot.send_message(message.chat.id, '_' * 30)
 

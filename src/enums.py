@@ -11,9 +11,14 @@ class SubjectBoxKeys(Enum):
     RATING = 'rating'
     EXAM = 'exam'
     COURSEWORK: Optional[str] = 'coursework'
+    FINAL_MARK: Optional[str] = 'final_mark'
 
 
 class UserDataKeys(Enum):
     LOGIN = 'login'
     PASSWORD = 'password'
     PERIOD = 'period'
+
+
+text_list = ['93,50', '13,45']
+

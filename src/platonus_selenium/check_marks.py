@@ -67,6 +67,13 @@ def start_webdriver(
         text: str = elements.text
         text_list = text.split('\n')
 
+        j = 0
+        for i in text_list:
+            text_list[j] = text_list[j].replace(',', '.')
+            if '%' in i:
+                text_list.remove(i)
+            j += 1
+
         subject_box[SubjectBoxKeys.SUBJECT] = text_list[0]
         subject_box[SubjectBoxKeys.TEACHER] = text_list[1]
         subject_box[SubjectBoxKeys.AVERAGE_MARK] = text_list[2]
@@ -78,3 +85,9 @@ def start_webdriver(
         subject_boxes.append(subject_box)
 
     return subject_boxes
+
+# start_webdriver({
+#     UserDataKeys.LOGIN: 'Шокоров_Владислав',
+#     UserDataKeys.PASSWORD: '8222',
+#     UserDataKeys.PERIOD: '1'
+# })
