@@ -1,10 +1,10 @@
+import os
 import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.remote.webelement import WebElement
 from webdriver_manager.chrome import ChromeDriverManager
 
-# Авторизация в Платонусе
 from src.enums import SubjectBoxKeys, UserDataKeys
 
 
@@ -12,12 +12,25 @@ def start_webdriver(
         user_data: dict[UserDataKeys, str]
 ) -> list[dict[SubjectBoxKeys, str]]:
     options = Options()
-    options.add_argument("--start-maximized")
-    driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+    # options.add_argument("--start-maximized")
+    options.add_argument("--headless")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--no-sandbox")
+
+    options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+
+    # driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+
+    driver = webdriver.Chrome(
+        executable_path=os.environ.get("CHROMEDRIVER_PATH"),
+        chrome_options=options
+    )
+
     url = "https://platonus.kgu.kz/"
     driver.get(url)
 
-    login_button = driver.find_element_by_id("Submit1")
+    # Авторизация в Платонусе
+    login_button = driver.find_element_by_id('Submit1')
     login = driver.find_element_by_id('login_input')
     password = driver.find_element_by_id('pass_input')
 
@@ -84,10 +97,12 @@ def start_webdriver(
 
         subject_boxes.append(subject_box)
 
+    # print(subject_boxes)
     return subject_boxes
 
-# start_webdriver({
-#     UserDataKeys.LOGIN: 'Шокоров_Владислав',
-#     UserDataKeys.PASSWORD: '8222',
-#     UserDataKeys.PERIOD: '1'
-# })
+
+start_webdriver({
+    UserDataKeys.LOGIN: 'Шокоров_Владислав',
+    UserDataKeys.PASSWORD: '8222',
+    UserDataKeys.PERIOD: '2'
+})

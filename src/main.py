@@ -1,6 +1,5 @@
 import telebot
 from telebot import types
-
 from src.platonus_selenium.check_marks import start_webdriver
 from src.enums import UserDataKeys, SubjectBoxKeys
 

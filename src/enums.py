@@ -20,5 +20,3 @@ class UserDataKeys(Enum):
     PERIOD = 'period'
 
 
-text_list = ['93,50', '13,45']
-
