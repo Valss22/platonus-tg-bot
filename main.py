@@ -1,7 +1,7 @@
 import telebot
 from telebot import types
-from src.platonus_selenium.check_marks import start_webdriver
-from src.enums import UserDataKeys, SubjectBoxKeys
+from platonus_selenium.check_marks import start_webdriver
+from enums import UserDataKeys, SubjectBoxKeys
 
 token = '5115413693:AAFlHsjG9D64RJkhN5JlUgBnT3bKwZTU4o8'
 bot = telebot.TeleBot(token)

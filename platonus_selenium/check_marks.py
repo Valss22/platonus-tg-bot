@@ -3,9 +3,9 @@ import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.remote.webelement import WebElement
-from webdriver_manager.chrome import ChromeDriverManager
+#from webdriver_manager.chrome import ChromeDriverManager
 
-from src.enums import SubjectBoxKeys, UserDataKeys
+from enums import SubjectBoxKeys, UserDataKeys
 
 
 def start_webdriver(
