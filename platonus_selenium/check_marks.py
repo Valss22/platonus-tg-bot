@@ -3,8 +3,6 @@ import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.remote.webelement import WebElement
-#from webdriver_manager.chrome import ChromeDriverManager
-
 from enums import SubjectBoxKeys, UserDataKeys
 
 
@@ -12,14 +10,11 @@ def start_webdriver(
         user_data: dict[UserDataKeys, str]
 ) -> list[dict[SubjectBoxKeys, str]]:
     options = Options()
-    # options.add_argument("--start-maximized")
     options.add_argument("--headless")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--no-sandbox")
 
     options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-
-    # driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 
     driver = webdriver.Chrome(
         executable_path=os.environ.get("CHROMEDRIVER_PATH"),
@@ -97,12 +92,4 @@ def start_webdriver(
 
         subject_boxes.append(subject_box)
 
-    # print(subject_boxes)
     return subject_boxes
-
-
-start_webdriver({
-    UserDataKeys.LOGIN: 'Шокоров_Владислав',
-    UserDataKeys.PASSWORD: '8222',
-    UserDataKeys.PERIOD: '2'
-})
